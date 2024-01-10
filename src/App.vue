@@ -5,9 +5,14 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <RouterView/>
+  <div class="wrapper">
+    <RouterView/>
+  </div>
 </template>
 
 <style scoped>
-
+  
+  .wrapper{
+    margin: 0 auto;
+  }
 </style>

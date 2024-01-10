@@ -1,9 +1,9 @@
 <script setup lang="ts">
-
+    import headerComponent from "../components/header.vue"
 </script>
 
 <template>
-    <RouterLink to="/HelloWorld">Hello World</RouterLink>
+    <headerComponent/>
 </template>
 
 <style scoped>

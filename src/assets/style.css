@@ -1,14 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 :root {
   font-family: "Roboto", "Chandra", "Millanova", "Rasfire";
+  /* src: url(./fonts/Chandra.ttf) format("truetype"); */
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 700;
 
-  color: var(--color-black);
   background-color: var(--color-white);
 
   --color-black: #1C1C1C;
   --color-white: #ffffff;
   --color-red: #EC1C24;
+  --color-graytext: #a1a1a1;
+  --color-line: #d4d4d4;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -16,7 +19,13 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-a {
+a, a:visited {
+  color: var(--color-black);
   text-decoration: none;
 }
