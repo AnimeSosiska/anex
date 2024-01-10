@@ -1,0 +1,22 @@
+:root {
+  font-family: "Roboto", "Chandra", "Millanova", "Rasfire";
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: var(--color-black);
+  background-color: var(--color-white);
+
+  --color-black: #1C1C1C;
+  --color-white: #ffffff;
+  --color-red: #EC1C24;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  text-decoration: none;
+}
