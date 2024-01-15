@@ -45,29 +45,29 @@
             <div class="burger__content">
                 <ul class="left-column burger__column">
                     <li>Популярные страны</li>
-                    <li>Турция</li>
-                    <li>Египет</li>
-                    <li>Мальдивы</li>
-                    <li>ОАЭ</li>
-                    <li>Куба</li>
-                    <li>Шри-Ланка</li>
+                    <li><RouterLink to="/"><span>Турция</span></RouterLink></li>
+                    <li><RouterLink to="/"><span>Египет</span></RouterLink></li>
+                    <li><RouterLink to="/"><span>Мальдивы</span></RouterLink></li>
+                    <li><RouterLink to="/"><span>ОАЭ</span></RouterLink></li>
+                    <li><RouterLink to="/"><span>Куба</span></RouterLink></li>
+                    <li><RouterLink to="/"><span>Шри-Ланка</span></RouterLink></li>
                 </ul>
                 <ul class="middle-column burger__column">
                     <li>Туристам</li>
-                    <li>Страны</li>
-                    <li>Отели</li>
-                    <li>Подбор тура</li>
-                    <li>Горящие туры</li>
-                    <li>Как купить и оплатить тур</li>
+                    <li><RouterLink to="/countries"><span>Страны</span></RouterLink></li>
+                    <li><RouterLink to="/hotels"><span>Отели</span></RouterLink></li>
+                    <li><RouterLink to="/tours"><span>Подбор тура</span></RouterLink></li>
+                    <li><RouterLink to="/hot-tours"><span>Горящие туры</span></RouterLink></li>
+                    <li><RouterLink to="/"><span>Как купить и оплатить тур</span></RouterLink></li>
                 </ul>
                 <ul class="right-column burger__column">
                     <li>Компания</li>
-                    <li>О нас</li>
-                    <li>Отзывы</li>
-                    <li>Контакты</li>
-                    <li>Новости</li>
-                    <li>Priority</li>
-                    <li>Агентам</li>
+                    <li><RouterLink to="/about"><span>О нас</span></RouterLink></li>
+                    <li><RouterLink to="/reviews"><span>Отзывы</span></RouterLink></li>
+                    <li><RouterLink to="/contacts"><span>Контакты</span></RouterLink></li>
+                    <li><RouterLink to="/news"><span>Новости</span></RouterLink></li>
+                    <li><RouterLink to="/priority"><span>Priority</span></RouterLink></li>
+                    <li><RouterLink to="/agents"><span>Агентам</span></RouterLink></li>
                 </ul>
             </div>
         </div>
@@ -90,18 +90,19 @@
         height: 85px;
         width: 1120px;
         justify-content: space-between;
-        padding: 0 7px;
+        padding: 0 30px;
     }
     .header__container.burgerActive{
         box-shadow: 0px 4px 20px 0px rgba(43, 43, 51, 0.20);
     }
     .logo{
-        margin-right: 86px;
+        /* margin-right: 6vw; */
     }
     .menu {
         font-size: 14px;
         display: flex;
-        gap: 42px;
+        gap: 40px;
+        /* float: right; */
     }
     .menu__link{
         display: flex;
@@ -170,12 +171,22 @@
         line-height: normal;
         font-size: 16px;
     }
+    .burger__column li:first-of-type:hover{
+        cursor:default;
+    }
     .burger__column li{
         color: var(--color-black);
         list-style-type: none;
         font-size: 14px;
         font-weight: 300;
         line-height: 27px;
+        
+    }
+    .burger__column li span{
+        transition: all 0.1s ease-out;
+    }
+    .burger__column li span:hover{
+        opacity: 0.7;
     }
     .line {
         height:38px;
@@ -185,10 +196,16 @@
     .content-left{
         display: inherit;
         align-items: center;
+        gap: 50px;
+        /* flex: 70% 0 0; */
+        justify-content: space-between;
     }
     .content-right{
         display: inherit;
+        /* float:right; */
+        /* align-self: end; */
         align-items: center;
+        flex: max-content 0 1;
     }
     .links{
         display: flex;
@@ -201,7 +218,7 @@
     }
     @media (max-width: 1024px){
         .header__content {
-            width: 928px;
+            /* width: 928px; */
         }
         .menu__link-hide {
             display: none;
@@ -215,6 +232,24 @@
             flex-direction: column;
             height: 100%;
         }
+        .burger__column li:first-of-type{
+            grid-column: 1/3;
+            margin-bottom: 12px;
+        }
+        .burger__content {
+            gap: 28px;
+            padding: 0;
+            max-width: max-content;
+            margin: 25px 0 0 0;
+        }
+        .burger__column{
+            display: grid;
+            column-gap: 10vw;
+            grid-template-rows: repeat(4, 1fr);
+            grid-template-columns: 2fr 4fr;
+            grid-auto-flow: column;
+            /* text-align: left; */
+        }
         /* .burger__container {
             transform: translateY(-100%);
         } */
@@ -226,20 +261,16 @@
         .line-hide{
             display: none;
         }
-        .logo {
-            margin-right: 5vw;
+        .content-left{
+            gap: 20px;
         }
-    }
-    @media (max-width: 500px){
         .menu__link-hideAll{
             display: none;
         }
-        .header__content{
-            padding: 0 30px;
-        }
-        .burger__content{
-            padding-left: 30px;
-            padding-right: 0;
-        }
+    }
+    @media (max-width: 500px){
+        /* .burger__column {
+            column-gap: 0;
+        } */
     }
 </style>
