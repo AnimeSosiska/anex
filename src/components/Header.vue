@@ -7,7 +7,7 @@
 </script>
 
 <template>
-    <header>
+    <header class="header">
         <div class="header__container" :class="{burgerActive: menuShow}">
             <div class="header__content">
                 <div class="content-left">
@@ -84,6 +84,12 @@
 </template>
 
 <style scoped>
+    .header {
+        position: fixed;
+        width: 100%;
+        height: 85px;
+        z-index: 1000;
+    }
     .header__container {
         position: relative;
         display: flex;
@@ -159,10 +165,11 @@
         transform: translateY(-10px) rotate(-45deg);
     }
     .burger__container {
-        width: 100%;
         display: flex;
+        width: 100%;
         justify-content: center;
         transform: translateY(-100%);
+        background-color: var(--color-white);
         transition: transform 0.2s ease-in-out;
     }
     .burger__content > span{
@@ -171,12 +178,12 @@
     .burger__container.burgerActive {
         transform: translateY(0);
     }
+
     .burger__content{
         padding: 52px 198px 0 244px;
         height:305px;
         /* max-width:1120px; */
         width: 1120px;
-        background-color: var(--color-white);
         display: flex;
         justify-content: space-between;
     }
@@ -277,19 +284,17 @@
         }
     }
     @media (max-width: 900px){
-        .burger__content {
-            flex-direction: column;
-            height: 100%;
-        }
         .burger__column li:first-of-type{
             grid-column: 1/3;
             margin-bottom: 12px;
         }
         .burger__content {
+            flex-direction: column;
+            /* height: 100%; */
             gap: 28px;
             padding: 0;
             max-width: max-content;
-            margin: 25px 0 0 0;
+            margin: 25px 0;
         }
         .burger__column{
             display: grid;
@@ -306,7 +311,9 @@
         }
         .burger__container {
             flex-direction: column;
+            justify-content: left;
             align-items: center;
+            height: 100vh;
         }
         .burger__subcontent{
             /* margin-top: 28px; */
