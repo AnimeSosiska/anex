@@ -1,8 +1,10 @@
 <script setup lang="ts">
     import Dropdown from 'v-dropdown'
     import { ref} from 'vue'
+    let dropdownTo = ref()
     let dropdownFrom = ref()
-    const dropdown = ref()
+    const ddFrom = ref()
+    const ddTo = ref()
     const countriesPopular = ref([
         'Турция',
         'Египет',
@@ -33,10 +35,46 @@
         'Япония'
     ]
     )
-    function doEmpty(){
+    const citiesPopular = ref([
+        'Екатеринбург',
+        'Казань',
+        'Москва',
+        'Н.Новгород',
+        'Самара',
+        'С.Петербург'
+    ])
+    const citiesAll = ref([
+        'Абакан',
+        'Анапа',
+        'Архангельск',
+        'Астрахань',
+        'Барнаул',
+        'Белгород',
+        'Благовещенск',
+        'Братск',
+        'Брянск',
+        'Владивосток',
+        'Владикавказ',
+        'Волгоград',
+        'Воронеж',
+        'Грозный',
+        'Иваново',
+        'Ижевск',
+        'Иркутск',
+        'Калининград',
+        'Калуга',
+        'Кемерово',
+        'Киров',
+        'Краснодар',
+        'Красноярск'
+    ])
+    function emptyFrom(){
         dropdownFrom = ref('')
-        dropdown.value.close()
-    // console.log(dropdownFrom)
+        ddFrom.value.close()
+    }
+    function emptyTo(){
+        dropdownTo = ref('')
+        ddTo.value.close()
     }
 
 </script>
@@ -44,7 +82,7 @@
 <template>
     <div class="search__container">
         <form class="search__form" @submit.prevent>
-            <Dropdown customContainerClass="dropdown-from__container" class="dropdown-from" ref="dropdown">
+            <Dropdown customContainerClass="dropdown-from__container" class="dropdown-from" ref="ddFrom">
                 <template #trigger>
                     <button class="dropdown-from__button" :class="[dropdownFrom ? '' : 'empty']">Откуда</button>
                     <span class="dropdown-from__input">{{ dropdownFrom }}</span>
@@ -54,8 +92,37 @@
                         <div class="dropdown__countries-popular">
                             <span>Популярные</span>
                             <ul>
+                                <li v-for="item in citiesPopular">
+                                    <input type="radio" name="city" :value="item" v-model="dropdownFrom">{{ item }}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="dropdown__countries-all">
+                            <span>Все города</span>
+                            <ul>
+                                <li v-for="item in citiesAll">
+                                    <input type="radio" name="city2" :value="item" v-model="dropdownFrom">{{ item }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <span></span>
+                    <button @click="emptyFrom()">Очистить</button>
+                </div>
+            </Dropdown>
+            <span class="line"></span>
+            <Dropdown customContainerClass="dropdown-from__container" class="dropdown-from" ref="ddTo">
+                <template #trigger>
+                    <button class="dropdown-from__button" :class="[dropdownTo ? '' : 'empty']">Куда</button>
+                    <span class="dropdown-from__input">{{ dropdownTo }}</span>
+                </template>
+                <div class="dropdown-from__content dropdown">
+                    <div class="dropdown__countries">
+                        <div class="dropdown__countries-popular">
+                            <span>Популярные</span>
+                            <ul>
                                 <li v-for="item in countriesPopular">
-                                    <input type="radio" name="country" :value="item" v-model="dropdownFrom">{{ item }}
+                                    <input type="radio" name="country" :value="item" v-model="dropdownTo">{{ item }}
                                 </li>
                             </ul>
                         </div>
@@ -63,13 +130,13 @@
                             <span>Все страны</span>
                             <ul>
                                 <li v-for="item in countriesAll">
-                                    <input type="radio" name="country2" :value="item" v-model="dropdownFrom">{{ item }}
+                                    <input type="radio" name="country2" :value="item" v-model="dropdownTo">{{ item }}
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <span></span>
-                    <button @click="doEmpty()">Очистить</button>
+                    <button @click="emptyTo()">Очистить</button>
                 </div>
             </Dropdown>
         </form>
@@ -88,6 +155,11 @@
         text-transform: uppercase;
         font-size: 16px !important;
     }
+    .line {
+        height: 38px;
+        border: 1px solid var(--color-line);
+        margin-left: 60px;
+    }
     .search__container{
         max-width: 928px;
         width: 100%;
@@ -103,6 +175,7 @@
     .dropdown-from{
         margin-left: 28px;
         height: 100%;
+        width: 100px;
         display: flex;
         flex-direction: column;
         justify-content: center;
