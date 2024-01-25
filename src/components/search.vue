@@ -1,8 +1,12 @@
 <script setup lang="ts">
     import Dropdown from 'v-dropdown'
-    import { ref} from 'vue'
+    import { ref } from 'vue'
     let dropdownTo = ref()
     let dropdownFrom = ref()
+    let dropdownFromButton = ref(false)
+    let dropdownToButton = ref(false)
+    const ddToInput = ref()
+    const ddFromInput = ref()
     const ddFrom = ref()
     const ddTo = ref()
     const countriesPopular = ref([
@@ -76,16 +80,47 @@
         dropdownTo = ref('')
         ddTo.value.close()
     }
+    function fromChange(){
+        // console.log(dropdownFromButton.value)
+        if(dropdownFromButton.value && !dropdownFrom.value){
+            dropdownFromButton.value = false
+            ddFromInput.value.style.height = ""
+        }else {
+            dropdownFromButton.value = true
+            ddFromInput.value.style.height = "24px"
+        }
+    }
+    function toChange(){
+        // console.log(ddFrom.toggle)
+        if(dropdownToButton.value && !dropdownTo.value){
+            dropdownToButton.value = false
+            ddToInput.value.style.height = ""
+        }else {
+            dropdownToButton.value = true
+            ddToInput.value.style.height = "24px"
+        }
+        // console.log(ddToInput.value.style)
+    }
+    // watch(ddFromMenu, async ()=>{
+    //     // if(ddFromEl[0].style.display == 'none'){
+    //     //     ddFromMenu.value = 1
+    //     //     // console.log(1)
+    //     // } else {
+    //     //     ddFromMenu.value = 0
+    //     //     // console.log(0)
+    //     // }
+    //     console.log(dropdownFromButton.value)
+    // }, {immediate: true})
 
 </script>
 
 <template>
     <div class="search__container">
         <form class="search__form" @submit.prevent>
-            <Dropdown customContainerClass="dropdown-from__container" class="dropdown-from" ref="ddFrom">
+            <Dropdown customContainerClass="dropdown-from__container" class="dropdown-from" ref="ddFrom" @visible-change="fromChange()">
                 <template #trigger>
-                    <button class="dropdown-from__button" :class="[dropdownFrom ? '' : 'empty']">Откуда</button>
-                    <span class="dropdown-from__input">{{ dropdownFrom }}</span>
+                    <button class="dropdown-from__button" :class="{empty: !dropdownFromButton}">Откуда</button>
+                    <span class="dropdown-from__input" ref="ddFromInput">{{ dropdownFrom }}</span>
                 </template>
                 <div class="dropdown-from__content dropdown">
                     <div class="dropdown__countries">
@@ -111,10 +146,10 @@
                 </div>
             </Dropdown>
             <span class="line"></span>
-            <Dropdown customContainerClass="dropdown-from__container" class="dropdown-from" ref="ddTo">
+            <Dropdown customContainerClass="dropdown-from__container" class="dropdown-from" ref="ddTo" @visible-change="toChange"> 
                 <template #trigger>
-                    <button class="dropdown-from__button" :class="[dropdownTo ? '' : 'empty']">Куда</button>
-                    <span class="dropdown-from__input">{{ dropdownTo }}</span>
+                    <button class="dropdown-from__button" :class="{empty: !dropdownToButton}">Куда</button>
+                    <span class="dropdown-from__input" ref="ddToInput">{{ dropdownTo }}</span>
                 </template>
                 <div class="dropdown-from__content dropdown">
                     <div class="dropdown__countries">
@@ -221,6 +256,7 @@
         font-weight: 400;
         font-size: 12px;
         color: var(--color-graytext);
+        pointer-events: none;
     }
     .dropdown-from__input{
         text-align: inherit;
@@ -228,6 +264,7 @@
         color: var(--color-black);
         font-size: 16px;
         font-weight: 500;
+        
     }
     .dropdown__countries{
         display: flex;
