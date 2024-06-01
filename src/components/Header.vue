@@ -22,14 +22,13 @@
                         <RouterLink to="/countries" class="menu__link menu__link-hide">СТРАНЫ
                             <span></span>
                         </RouterLink>
-                        <RouterLink to="/hotels" class="menu__link menu__link-hide">ОТЕЛИ
+                        <!-- <RouterLink to="/hotels" class="menu__link menu__link-hide">ОТЕЛИ
                             <span></span>
-                        </RouterLink>
+                        </RouterLink> -->
                     </div>
                 </div>
                 <div class="content-right">
                     <div class="links links-hide">
-                        <RouterLink to="/" class="links__button"><span>Оставить заявку</span></RouterLink>
                         <phone/>
                         <location/>
                     </div>
@@ -56,23 +55,18 @@
                 <ul class="middle-column burger__column">
                     <li>Туристам</li>
                     <li><RouterLink to="/countries"><span>Страны</span></RouterLink></li>
-                    <li><RouterLink to="/hotels"><span>Отели</span></RouterLink></li>
                     <li><RouterLink to="/tours"><span>Подбор тура</span></RouterLink></li>
                     <li><RouterLink to="/hot-tours"><span>Горящие туры</span></RouterLink></li>
-                    <li><RouterLink to="/"><span>Как купить и оплатить тур</span></RouterLink></li>
                 </ul>
                 <ul class="right-column burger__column">
                     <li>Компания</li>
                     <li><RouterLink to="/about"><span>О нас</span></RouterLink></li>
                     <li><RouterLink to="/reviews"><span>Отзывы</span></RouterLink></li>
                     <li><RouterLink to="/contacts"><span>Контакты</span></RouterLink></li>
-                    <li><RouterLink to="/news"><span>Новости</span></RouterLink></li>
                     <li><RouterLink to="/priority"><span>Priority</span></RouterLink></li>
-                    <li><RouterLink to="/agents"><span>Агентам</span></RouterLink></li>
                 </ul>
                 <span></span> 
                 <div class="burger__subcontent">
-                    <RouterLink to="/" class="burger__button"><span>Оставить заявку</span></RouterLink>
                     <div class="burger__subcontent-links">
                         <phone/>
                         <location/>
@@ -88,7 +82,7 @@
         position: fixed;
         width: 100%;
         height: 85px;
-        z-index: 1000;
+        z-index: 997;
     }
     .header__container {
         position: relative;
@@ -97,7 +91,7 @@
         background-color: var(--color-white);
         width: 100%;
         z-index: 100;
-        box-shadow: 0px 0px 0px 0px rgba(43, 43, 51, 0.20);
+        box-shadow: 0px 4px 20px 0px rgba(43, 43, 51, 0.20);
         transition: box-shadow 0.3s ease-in-out;
     }
     .header__content {
@@ -106,10 +100,6 @@
         width: 1120px;
         /* gap: 80px; */
         justify-content: space-between;
-        padding: 0 30px;
-    }
-    .header__container.burgerActive{
-        box-shadow: 0px 4px 20px 0px rgba(43, 43, 51, 0.20);
     }
     .menu {
         font-size: 14px;
@@ -247,7 +237,7 @@
         gap: 11px;
     }
     .links__button{
-        padding: 10px;
+        padding: 10px 16px;
         margin-right: 30px;
         border: 1px solid #6a6a6a;
         border-radius: 30px;

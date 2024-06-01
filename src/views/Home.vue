@@ -2,6 +2,15 @@
     import headerComponent from "../components/header.vue"
     import startLine from "../components/icons/line.vue"
     import searchBlock from "../components/search.vue"
+    import hotToursBlock from "../components/hotTours.vue"
+    import hotelsBlock from "../components/hotels.vue"
+    import footerComponent from "../components/footer.vue"
+    import { useRouter } from 'vue-router'
+    const router = useRouter()
+
+    function redirect() {
+        router.push({name: 'tours'})
+    }
 </script>
 
 <template>
@@ -11,12 +20,25 @@
             <h1 class="start__title">Путешествия<br/>мечты</h1>
             <span class="start__subtitle">выбери свою</span>
             <startLine class="start__line"/>
-            <searchBlock/>
+            <searchBlock @submitFunc="redirect()"/>
+        </section>
+        <section class="hot-tours__content">
+            <hotToursBlock/>
+        </section>
+        <section class="hotels__content">
+            <hotelsBlock/>
         </section>
     </main>
+    <footerComponent/>
 </template>
 
 <style scoped>
+    .hot-tours__content{
+        width: 100%;
+        height: 813px;
+        /* display: flex;
+        justify-content: center; */
+    }
     .start__content{
         width: 100%;
         height: 100vh;
