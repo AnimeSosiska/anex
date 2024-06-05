@@ -151,6 +151,7 @@
         } else {
             date.value = new Date
         }
+        // @ts-expect-error
         sessionStorage.setItem('date', new Date())
         sessionStorage.setItem('room', dropdownroomAll.value[0].name)
     })

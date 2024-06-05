@@ -60,7 +60,7 @@
             <div class="content__bottom reviews__list">
                 <div class="review__block" v-for="review in reviews">
                     <div class="review-block__stars">
-                        <star v-for="stars in 5"/>
+                        <star v-for="stars in 5" :key="stars"/>
                     </div>
                     <span class="review-block__name">
                         {{ review.name }}

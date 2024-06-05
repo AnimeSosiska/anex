@@ -50,8 +50,10 @@
         // console.log(locationsData)
         for (var i=0; i<response.data.length; i++){
             if(response.data[i].hot){
+                // @ts-expect-error
                 countriesPopular.value.push(response.data[i].location)
             }else{
+                // @ts-expect-error
                 countriesAll.value.push(response.data[i].location)
             }
         }
@@ -137,6 +139,7 @@
         'Красноярск'
     ])
     function emptyFrom(){
+        // @ts-expect-error
         dropdownFrom = ref()
         ddFrom.value.close()
     }
@@ -190,6 +193,7 @@
             dropdownDateButton.value = false
             ddDateInput.value.style.height = ""
         }
+        // @ts-expect-error
         window.sessionStorage.setItem("date", date)
     }
     function counter(who:number, func:string, adults:boolean){

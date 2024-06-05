@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import { ref, onBeforeMount, onErrorCaptured } from 'vue'
+    import { ref, onErrorCaptured } from 'vue'
     import hotelsDataService from "../services/hotelsDataService.js"
     import star from "./icons/ratingStar.vue"
     import feedIcon from "./icons/feed.vue"
@@ -57,7 +57,7 @@
                     </h3>
                     <div class="info__rating">
                         <!-- {{ props.stars }} -->
-                        <star v-for="rate in props.stars[index]"/>
+                        <star v-for="rate in props.stars[index]" :key="rate"/>
                     </div>
                 </div>
                 <div class="content__info-bottom info">

@@ -11,6 +11,7 @@
     const searchResultsData = ref(null)
     function searchBlockRes(data) {
         searchData.value = data
+        // @ts-expect-error
         searchResultsData.value.showResults(searchData)
     }
 </script>

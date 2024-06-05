@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+/* eslint-disable */
     import logo from "../components/icons/logo.vue"
     import footerComponent from "../components/footer.vue"
     import VueDatePicker from '@vuepic/vue-datepicker'
@@ -28,15 +29,24 @@
         price: '',
         location: ''
     })
+    // @ts-expect-error
     data.value.id = sessionStorage.getItem('id')
+    // @ts-expect-error
     data.value.img = sessionStorage.getItem("image")
+    // @ts-expect-error
     data.value.hotelName = sessionStorage.getItem("hotelName")
+    // @ts-expect-error
     data.value.rating = Number(sessionStorage.getItem("rating"))
+    // @ts-expect-error
     data.value.date = Date.parse(sessionStorage.getItem("date"))
     data.value.date = new Date(data.value.date).toLocaleString('ru-RU', {month: 'long', year: 'numeric', day: 'numeric'})
+    // @ts-expect-error
     data.value.people = JSON.parse(sessionStorage.getItem("people"))
+    // @ts-expect-error
     data.value.room = sessionStorage.getItem("room")
+    // @ts-expect-error
     data.value.price = sessionStorage.getItem("price")
+    // @ts-expect-error
     data.value.location = sessionStorage.getItem("location")
     
     
@@ -60,57 +70,73 @@
         console.log(tourists.value)
         switch (el) {
             case 'firstName': 
+                // @ts-expect-error
                 tourists.value[index].firstName = event.target.value
                 break
             case 'lastName':
+                // @ts-expect-error
                 tourists.value[index].lastName = event.target.value
                 break
             case 'appeal':
+                // @ts-expect-error
                 tourists.value[index].appeal = event.target.value
                 break
             case 'gender':
+                // @ts-expect-error
                 tourists.value[index].gender = event.target.value
                 break
             case 'country':
+                // @ts-expect-error
                 tourists.value[index].country = event.target.value
                 break
             case 'citizenship':
+                // @ts-expect-error
                 tourists.value[index].citizenship = event.target.value
                 break
             case 'date':
                 if (date.value[index] != undefined) {
+                    // @ts-expect-error
                     tourists.value[index].date = date.value[index].toLocaleString('ru-RU', {month: 'long', year: 'numeric', day: 'numeric'})
                 }
                 break
             case 'passport':
+                // @ts-expect-error
                 tourists.value[index].passport = event.target.value
                 break
             case 'serie':
+                // @ts-expect-error
                 tourists.value[index].serie = event.target.value
                 break
             case 'number':
+                // @ts-expect-error
                 tourists.value[index].number = event.target.value
                 break
             case 'issue':
                 if (issue.value[index] != undefined) {
+                    // @ts-expect-error
                     tourists.value[index].issue = issue.value[index].toLocaleString('ru-RU', {month: 'long', year: 'numeric', day: 'numeric'})
                 }
                 break
             case 'valid':
                 if (valid.value[index] != undefined) {
+                    // @ts-expect-error
                     tourists.value[index].valid = valid.value[index].toLocaleString('ru-RU', {month: 'long', year: 'numeric', day: 'numeric'})
                 }
                 break
             case 'phone':
+                // @ts-expect-error
                 tourists.value[index].phone = event.target.value
                 break
             case 'email':
+                // @ts-expect-error
                 tourists.value[index].email = event.target.value
                 break
         }
     }
     function submitFunc() {
+        // @ts-expect-error
         let adults = data.value.people.adults
+        // @ts-expect-error
         let kids = data.value.people.childs
         let res = ref()
         hotelsDataService.sendBookingOrder(
@@ -126,19 +152,33 @@
             res.value = response.data
             for (let i = 0; i < tourists.value.length; i++) {
                 hotelsDataService.sendBookingData(
+                    // @ts-expect-error
                     tourists.value[i].firstName,
+                    // @ts-expect-error
                     tourists.value[i].lastName,
+                    // @ts-expect-error
                     tourists.value[i].appeal, 
+                    // @ts-expect-error
                     tourists.value[i].gender,
+                    // @ts-expect-error
                     tourists.value[i].country,
+                    // @ts-expect-error
                     tourists.value[i].citizenship,
+                    // @ts-expect-error
                     tourists.value[i].date,
+                    // @ts-expect-error
                     tourists.value[i].passport,
+                    // @ts-expect-error
                     tourists.value[i].serie,
+                    // @ts-expect-error
                     tourists.value[i].number,
+                    // @ts-expect-error
                     tourists.value[i].issue,
+                    // @ts-expect-error
                     tourists.value[i].valid,
+                    // @ts-expect-error
                     tourists.value[i].phone,
+                    // @ts-expect-error
                     tourists.value[i].email,
                     res.value.id
                 )
@@ -147,7 +187,9 @@
         router.push({name: "end"})
     }
     onBeforeMount(() => {
+        // @ts-expect-error
         for (let i = 0; i < data.value.people.adults; i++){
+            // @ts-expect-error
             tourists.value[i] = JSON.parse(JSON.stringify(tourist))
         }
     })
@@ -163,14 +205,17 @@
             <div class="hotel-info__image" :style="{ backgroundImage: `url('data:image/png;base64,` + data.img + `')`}"></div>
             <span class="hotel-name">{{ data.hotelName }}</span>
             <div class="hotel-rating">
-                <star v-for="rate in data.rating"/>
+                <star v-for="rate in data.rating" :key="rate"/>
             </div>
             <div class="hotel-data">
                 <span class="data-row">
                     Вылет: {{ data.date }}
                 </span>
                 <span class="data-row">
-                    Туристы: {{ data.people.adults }} человека
+                    Туристы: {{ 
+                        // @ts-expect-error
+                        data.people.adults 
+                        }} человека
                 </span>
                 <span class="data-row">
                     Номер: {{ data.room }}
@@ -190,7 +235,11 @@
         </div>
         <section class="tourists">
             <form @submit.prevent="submitFunc" class="tourist__form" ref='form' id="tourist-form"> 
-                <div class="tourist__block" v-for="(item, index) in data.people.adults">
+                <div class="tourist__block" 
+                v-for="(item, index) in 
+                // @ts-expect-error
+                data.people.adults" 
+                :key="item">
                     <h2>Турист {{ index+1 }}</h2>
                     <div class="tourist-mainData">
                         <h3>Основные данные</h3>

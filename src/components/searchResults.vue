@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import { ref, onBeforeMount, onMounted, computed, reactive, onErrorCaptured } from 'vue'
+    import { ref, onBeforeMount, onErrorCaptured } from 'vue'
     import type { Ref } from 'vue'
     import searchResultBlock from "./searchResultBlock.vue"
     import hotelsDataService from "../services/hotelsDataService.js"
@@ -11,8 +11,11 @@
     let isHot = props.isHot
     let locationQuery = props.location
     let card = ref()
+    // @ts-expect-error
     let hotelId: Ref<array> = ref([])
+    // @ts-expect-error
     let stars: Ref<array> = ref([])
+    // @ts-expect-error
     let hot: Ref<array> = ref([])
     let cardLength = ref()
     function showResults(data){

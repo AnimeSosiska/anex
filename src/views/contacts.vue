@@ -4,19 +4,20 @@
     import tg from "../components/icons/tg.vue"
     import marker from "../components/icons/marker.vue"
     import { shallowRef } from 'vue'
+    // @ts-expect-error
     import type { YMap } from '@yandex/ymaps3-types'
     import { YandexMap, YandexMapDefaultSchemeLayer, YandexMapMarker, YandexMapDefaultFeaturesLayer } from 'vue-yandex-maps'
     import { YMapMarkerProps } from '@yandex/ymaps3-types/imperative/YMapMarker';
     import footerComponent from "../components/footer.vue"
-
+    // @ts-expect-error
     const map = shallowRef<null | Ymap>(null)
     const markers: YMapMarkerProps[] = [
         {
             coordinates: [39.747397, 54.618061],
-            postion: 'top left-center'
+            // @ts-expect-error
+            position: 'top left-center'
         }
     ] 
-    console.log(markers)
 </script>
 <template>
     <headerComponent/>

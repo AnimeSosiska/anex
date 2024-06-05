@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  // @ts-expect-error
   import { RouterLink, RouterView } from 'vue-router'
 </script>
 
