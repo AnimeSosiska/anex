@@ -1,0 +1,344 @@
+<script setup lang="ts">
+    import logo from "./icons/logo.vue"
+    import location from "./icons/location.vue"
+    import phone from "./icons/phone.vue"
+    import {ref} from 'vue'
+    const menuShow = ref(false)
+</script>
+
+<template>
+    <header class="header">
+        <div class="header__container" :class="{burgerActive: menuShow}">
+            <div class="header__content">
+                <div class="content-left">
+                    <RouterLink to="/" class="logo"><logo/></RouterLink>
+                    <div class="menu">
+                        <RouterLink to="/tours" class="menu__link menu__link-hideAll">ПОДБОР ТУРА
+                            <span></span>
+                        </RouterLink>
+                        <RouterLink to="/hot-tours" class="menu__link menu__link-hideAll">ГОРЯЩИЕ ТУРЫ
+                            <span></span>
+                        </RouterLink>
+                        <RouterLink to="/countries" class="menu__link menu__link-hide">СТРАНЫ
+                            <span></span>
+                        </RouterLink>
+                        <!-- <RouterLink to="/hotels" class="menu__link menu__link-hide">ОТЕЛИ
+                            <span></span>
+                        </RouterLink> -->
+                    </div>
+                </div>
+                <div class="content-right">
+                    <div class="links links-hide">
+                        <phone/>
+                        <location/>
+                    </div>
+                    <span class="line line-hide"></span>
+                    <div class="burger" @click="menuShow = !menuShow" :class="{burgerActive: menuShow}">
+                        <span class="burger-line burger-line-upper"></span>
+                        <span class="burger-line burger-line-middle"></span>
+                        <span class="burger-line burger-line-bottom"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="burger__container" :class="{burgerActive: menuShow}">
+            <div class="burger__content">
+                <ul class="left-column burger__column">
+                    <li>Популярные страны</li>
+                    <li><RouterLink to="/"><span>Турция</span></RouterLink></li>
+                    <li><RouterLink to="/"><span>Египет</span></RouterLink></li>
+                    <li><RouterLink to="/"><span>Мальдивы</span></RouterLink></li>
+                    <li><RouterLink to="/"><span>ОАЭ</span></RouterLink></li>
+                    <li><RouterLink to="/"><span>Куба</span></RouterLink></li>
+                    <li><RouterLink to="/"><span>Шри-Ланка</span></RouterLink></li>
+                </ul>
+                <ul class="middle-column burger__column">
+                    <li>Туристам</li>
+                    <li><RouterLink to="/countries"><span>Страны</span></RouterLink></li>
+                    <li><RouterLink to="/tours"><span>Подбор тура</span></RouterLink></li>
+                    <li><RouterLink to="/hot-tours"><span>Горящие туры</span></RouterLink></li>
+                </ul>
+                <ul class="right-column burger__column">
+                    <li>Компания</li>
+                    <li><RouterLink to="/about"><span>О нас</span></RouterLink></li>
+                    <li><RouterLink to="/reviews"><span>Отзывы</span></RouterLink></li>
+                    <li><RouterLink to="/contacts"><span>Контакты</span></RouterLink></li>
+                    <li><RouterLink to="/priority"><span>Priority</span></RouterLink></li>
+                </ul>
+                <span></span> 
+                <div class="burger__subcontent">
+                    <div class="burger__subcontent-links">
+                        <phone/>
+                        <location/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</template>
+
+<style scoped>
+    .header {
+        position: fixed;
+        width: 100%;
+        height: 85px;
+        z-index: 997;
+    }
+    .header__container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        background-color: var(--color-white);
+        width: 100%;
+        z-index: 100;
+        box-shadow: 0px 4px 20px 0px rgba(43, 43, 51, 0.20);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+    .header__content {
+        display: flex;
+        height: 85px;
+        width: 1120px;
+        /* gap: 80px; */
+        justify-content: space-between;
+    }
+    .menu {
+        font-size: 14px;
+        display: flex;
+        /* flex-grow: 1; */
+        width: 100%;
+        max-width: 440px;
+        /* gap: 44px; */
+        justify-content: space-between;
+        /* float: right; */
+    }
+    .menu__link{
+        display: flex;
+        flex-direction: column;
+    }
+    .menu__link > span{
+        width: 0;
+        border: 1px solid white;
+        border-radius: 1px;
+        transition: all 0.2s ease;
+    }
+    .menu__link:hover > span{
+        width: 100%;
+        border-color: black;
+    }
+    .menu__link.router-link-active{
+        color: var(--color-red);
+    }
+    .burger {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 0;
+    }
+    .burger:hover{
+        cursor: pointer;
+    }
+    .burger-line {
+        display: inline-block;
+        width: 41px;
+        border: 1px solid var(--color-black);
+        border-radius: 1px;
+        transition: all 0.1s ease;
+    }
+    .burgerActive .burger-line-upper{
+        transform: translateY(10px) rotate(45deg);
+    }
+    .burgerActive .burger-line-middle{
+        opacity: 0;
+    }
+    .burgerActive .burger-line-bottom{
+        transform: translateY(-10px) rotate(-45deg);
+    }
+    .burger__container {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        transform: translateY(-100%);
+        background-color: var(--color-white);
+        transition: transform 0.2s ease-in-out;
+    }
+    .burger__content > span{
+        display: none;
+    }
+    .burger__container.burgerActive {
+        transform: translateY(0);
+    }
+
+    .burger__content{
+        padding: 52px 198px 0 244px;
+        height:305px;
+        /* max-width:1120px; */
+        width: 1120px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .burger__subcontent{
+        display: none;
+    }
+    .burger__button{
+        display: none;
+    }
+    .burger__subcontent-links{
+        display: none;
+    }
+    .burger__column li:first-of-type{
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        font-weight: 500;
+        line-height: normal;
+        font-size: 16px;
+    }
+    .burger__column li:first-of-type:hover{
+        cursor:default;
+    }
+    .burger__column li{
+        color: var(--color-black);
+        list-style-type: none;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 27px;
+        
+    }
+    .burger__column li span{
+        transition: all 0.1s ease-out;
+    }
+    .burger__column li span:hover{
+        opacity: 0.7;
+    }
+    .line {
+        height:38px;
+        margin: 0 25px;
+        border: 1px solid var(--color-line);
+    }
+    .content-left{
+        display: inherit;
+        align-items: center;
+        gap: 50px;
+        max-width: 600px;
+        width: 100%;
+        /* flex: 70% 0 0; */
+        justify-content: space-between;
+    }
+    .content-right{
+        display: inherit;
+        /* float:right; */
+        /* align-self: end; */
+        align-items: center;
+        flex: max-content 0 1;
+    }
+    .links{
+        display: flex;
+        align-items: center;
+        gap: 11px;
+    }
+    .links__button{
+        padding: 10px 16px;
+        margin-right: 30px;
+        border: 1px solid #6a6a6a;
+        border-radius: 30px;
+        text-transform: uppercase;
+        font-weight: 500;
+        line-height: normal;
+        font-size: 14px;
+        transition: all 0.1s ease-out;
+    }
+    .links__button:hover, .burger__button:hover {
+        background-color: #f8f8f8;
+        filter: none !important;
+    }
+    .links >:hover{
+        transition: all 0.15s ease-in;
+        filter: brightness(0) saturate(100%) invert(36%) sepia(0%) saturate(0%) hue-rotate(42deg) brightness(93%) contrast(93%);
+        cursor: pointer;
+    }
+    @media (max-width: 1024px){
+        .menu__link-hide {
+            display: none;
+        }
+        .menu{
+            gap: 40px;
+            justify-content: start;
+            max-width: fit-content;
+        }
+        .content-left{
+            justify-content: left;
+            max-width: fit-content;
+        }
+        .burger__content{
+            padding-left: 144px;
+        }
+    }
+    @media (max-width: 900px){
+        .burger__column li:first-of-type{
+            grid-column: 1/3;
+            margin-bottom: 12px;
+        }
+        .burger__content {
+            flex-direction: column;
+            /* height: 100%; */
+            gap: 28px;
+            padding: 0;
+            max-width: max-content;
+            margin: 25px 0;
+        }
+        .burger__column{
+            display: grid;
+            column-gap: 10vw;
+            grid-template-rows: repeat(4, 1fr);
+            grid-template-columns: 2fr 4fr;
+            grid-auto-flow: column;
+            /* text-align: left; */
+        }
+        .burger__content > span{
+            display: block;
+            width: 100%;
+            border: 1px solid var(--color-line);
+        }
+        .burger__container {
+            flex-direction: column;
+            justify-content: left;
+            align-items: center;
+            height: 100vh;
+        }
+        .burger__subcontent{
+            /* margin-top: 28px; */
+            display: flex;
+            /* gap: 10px; */
+            justify-content:space-between;
+            /* align-self: flex-end; */
+            width: 100%;
+        }
+        .burger__button{
+            display: block;
+            padding: 10px;
+            border: 1px solid #6a6a6a;
+            border-radius: 30px;
+            text-transform: uppercase;
+            font-weight: 500;
+            line-height: normal;
+            font-size: 14px;
+            transition: all 0.1s ease-out;
+        }
+        .burger__subcontent-links{
+            display: flex;
+            gap: 10px;
+            align-self: center;
+        }
+        .links-hide, .line-hide{
+            display: none;
+        }
+    }
+    @media (max-width: 600px){
+        .menu__link-hideAll{
+            display: none;
+        }
+        /* .burger__column {
+            column-gap: 0;
+        } */
+    }
+</style>
